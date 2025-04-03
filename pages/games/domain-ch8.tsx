@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 type Scene = {
   text: string;
@@ -35,7 +36,7 @@ const scenes: Scene[] = [
 당신은 마이크를 들고 말한다.  
 “저는 그냥… 12달러 주고 산 도메인 하나 지켰을 뿐입니다.”`,
     choices: [
-      { text: "🌌 계속하기 (9장으로)", next: 4 },
+      { text: "🌱 다음 이야기로", next: 4 },
     ],
   },
   {
@@ -49,7 +50,7 @@ const scenes: Scene[] = [
   
 라는 문장이 적힌 액자가 걸려 있다.`,
     choices: [
-      { text: "🌌 계속하기 (9장으로)", next: 4 },
+      { text: "🌱 다음 이야기로", next: 4 },
     ],
   },
   {
@@ -63,7 +64,7 @@ kakao.games에 올린다.
   
 그리고 아무 말도 하지 않는다.`,
     choices: [
-      { text: "🌌 계속하기 (9장으로)", next: 4 },
+      { text: "🌱 다음 이야기로", next: 4 },
     ],
   },
   {
@@ -73,13 +74,26 @@ kakao.games에 올린다.
 그걸 만든 사람은 지금도,  
 그저 작은 페이지 하나를 조용히 열고 있다.  
   
-(최종장으로 계속)`,
+그리고 그 다음 페이지가,  
+바로 당신 앞에 놓여 있다.`,
+    choices: [
+      { text: "👉 마지막 장으로", next: 999 },
+    ],
   },
 ];
 
 export default function DomainChapter8() {
   const [scene, setScene] = useState(0);
+  const router = useRouter();
   const current = scenes[scene];
+
+  const handleChoice = (next: number) => {
+    if (next === 999) {
+      router.push('/games/domain-ch9');
+    } else {
+      setScene(next);
+    }
+  };
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-yellow-50 px-6 text-center">
@@ -89,7 +103,7 @@ export default function DomainChapter8() {
         {current.choices?.map((c, i) => (
           <button
             key={i}
-            onClick={() => setScene(c.next)}
+            onClick={() => handleChoice(c.next)}
             className="px-4 py-2 bg-purple-700 text-white rounded-xl hover:bg-purple-800 transition"
           >
             {c.text}
