@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 감성 추가해도 됨 */
+/* html, body {
+  font-family: 'Pretendard', sans-serif;
+} */
