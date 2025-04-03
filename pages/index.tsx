@@ -11,8 +11,8 @@ export default function Home() {
       <GameFrame title="🎮 kakao.games">
         <p className="text-base whitespace-pre-line text-left leading-relaxed mb-6">
           어서오세요,  
-          여기는 『kakao.games 이름은 복수형이지만  
-          정작 게임은 지금은 딱 하나뿐입니다. 😅
+          이곳은 바로『kakao.games』
+          이름은 복수형이지만 게임은 하나뿐입니다.😅
 
           뭐든 처음은 하나에서 시작하죠.  
           앞으로 작고 엉뚱한 게임들이  
