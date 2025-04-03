@@ -15,7 +15,7 @@ export default function Home() {
           by 마춤법장인
         </p>
         <div className="mt-6 space-x-4">
-          <a href="/games/kakao-adventure.tsx" className="px-6 py-2 bg-black text-white rounded-xl">게임 플레이하기</a>
+          <a href="/games/kakao-adventure" className="px-6 py-2 bg-black text-white rounded-xl">게임 플레이하기</a>
         </div>
       </main>
     </>
