@@ -1,10 +1,12 @@
-import { useState } from 'react';
-import { useRouter } from 'next/router';
+// pages/games/domain-ch3.tsx
+import { useState } from 'react'
+import { useRouter } from 'next/router'
+import GameFrame from '../../components/GameFrame'
 
 type Scene = {
-  text: string;
-  choices?: { text: string; next: number }[];
-};
+  text: string
+  choices?: { text: string; next: number }[]
+}
 
 const scenes: Scene[] = [
   {
@@ -82,25 +84,24 @@ Reddit과 HN에도 글을 올린다.
       { text: "🌱 다음 이야기로", next: 999 },
     ],
   },
-];
+]
 
 export default function DomainChapter3() {
-  const [scene, setScene] = useState(0);
-  const router = useRouter();
-  const current = scenes[scene];
+  const [scene, setScene] = useState(0)
+  const router = useRouter()
+  const current = scenes[scene]
 
   const handleChoice = (next: number) => {
     if (next === 999) {
-      router.push('/games/domain-ch4');
+      router.push('/games/domain-ch4')
     } else {
-      setScene(next);
+      setScene(next)
     }
-  };
+  }
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-purple-50 px-6 text-center">
-      <h1 className="text-2xl font-bold mb-4">🐉 도메인 전쟁 - 마춤법장인의 모험: 제3장</h1>
-      <p className="mb-6 text-lg whitespace-pre-line max-w-xl">{current.text}</p>
+    <GameFrame title="🐉 도메인 전쟁 - 마춤법장인의 모험: 제3장">
+      <p className="mb-6 text-lg whitespace-pre-line leading-relaxed text-left">{current.text}</p>
       <div className="flex flex-col space-y-3">
         {current.choices?.map((c, i) => (
           <button
@@ -112,6 +113,6 @@ export default function DomainChapter3() {
           </button>
         ))}
       </div>
-    </main>
-  );
+    </GameFrame>
+  )
 }
