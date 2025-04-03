@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 type Scene = {
   text: string;
@@ -37,7 +38,7 @@ const scenes: Scene[] = [
 눈을 뜬 당신은 생각한다.  
 ‘내가 뭘 만들어낸 거지…’`,
     choices: [
-      { text: "🌌 계속하기 (8장으로)", next: 4 },
+      { text: "🌱 다음 이야기로", next: 4 },
     ],
   },
   {
@@ -54,7 +55,6 @@ Github 소스를 들여다본다.
 > “이 사이트는 kakao.games에 영감을 받아 제작되었습니다.”`,
     choices: [
       { text: "💬 메일을 보낸다", next: 3 },
-      { text: "🙆 그냥 두고 본다", next: 1 },
     ],
   },
   {
@@ -70,7 +70,7 @@ Github 소스를 들여다본다.
 > “선생님의 세계관이 너무 좋아서 따라해봤어요…  
 죄송해요. 바꿀게요.”`,
     choices: [
-      { text: "🌌 계속하기 (8장으로)", next: 4 },
+      { text: "🌱 다음 이야기로", next: 4 },
     ],
   },
   {
@@ -84,13 +84,26 @@ Github 소스를 들여다본다.
 이건 단순한 웹사이트가 아니다.  
 이건 문화다.  
   
-(8장으로 계속)`,
+그리고 당신은,  
+그 문화의 시작점이다.`,
+    choices: [
+      { text: "👉 이어서 계속한다", next: 999 },
+    ],
   },
 ];
 
 export default function DomainChapter7() {
   const [scene, setScene] = useState(0);
+  const router = useRouter();
   const current = scenes[scene];
+
+  const handleChoice = (next: number) => {
+    if (next === 999) {
+      router.push('/games/domain-ch8');
+    } else {
+      setScene(next);
+    }
+  };
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-6 text-center">
@@ -100,7 +113,7 @@ export default function DomainChapter7() {
         {current.choices?.map((c, i) => (
           <button
             key={i}
-            onClick={() => setScene(c.next)}
+            onClick={() => handleChoice(c.next)}
             className="px-4 py-2 bg-purple-700 text-white rounded-xl hover:bg-purple-800 transition"
           >
             {c.text}
