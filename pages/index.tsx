@@ -12,8 +12,8 @@ export default function Home() {
         <div className="text-base text-left leading-relaxed space-y-4 mb-6">
           <p>
             어서오세요,  
-            여기는 바로 『kakao.games』  
-            게임은 아직 하나뿐입니다. 😅
+            여기는 바로 kakao.games 입니다.
+            아직 게임은 하나뿐이지만요. 😅
           </p>
 
           <p>
@@ -23,8 +23,9 @@ export default function Home() {
           </p>
 
           <p>
-            지금 플레이할 수 있는 유일한 게임은  
-            『도메인 전쟁 - 마춤법장인의 모험』
+            지금 플레이할 수 있는 게임은  
+            『도메인 전쟁』 입니다.
+            '마춤법장인의 모험'이라고도 불리죠.
           </p>
 
           <p>
