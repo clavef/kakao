@@ -1,5 +1,5 @@
-// pages/games/domain-ch1.tsx
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 type Scene = {
   text: string;
@@ -37,10 +37,10 @@ const scenes: Scene[] = [
 당신의 머릿속에는 아이디어가 넘쳐난다.  
   
 그러나 K사는 예상보다 빠르게 움직인다.  
-며칠 후, 당신은 국제 도메인 분쟁기구(UDRP)의  
+며칠 후, 당신은 국제 도메인 분쟁기구 UDRP의  
 제소 사실을 알리는 통보를 받게 된다.`,
     choices: [
-      { text: "🛡️ Cloudflare 에게 도움을 요청한다", next: 3 },
+      { text: "🛡️ Cloudflare에게 도움을 요청한다", next: 3 },
       { text: "🧙‍♂️ Vercel 드래곤을 소환한다", next: 4 },
     ],
   },
@@ -50,7 +50,7 @@ const scenes: Scene[] = [
 조금 후 전화가 걸려온다.  
   
 📞 "이건 웃긴 상황인데, 실제로 종종 있어.  
-도메인 분쟁은 '악의적 선점' 여부가 핵심이야.  
+도메인 분쟁은 악의적 선점 여부가 핵심이야.  
 근데 너처럼 진짜 게임을 만들려고 한 건 방어 논리로 충분해."  
   
 듣고 나니 마음이 한결 가벼워진다.  
@@ -63,19 +63,37 @@ K사는 UDRP 제소를 이미 준비 중이었다.`,
     ],
   },
   {
-    text: "🛡️ Cloudflare 와 함께하는 DNS 방어 전개 중... (2장으로 계속)",
+    text: "🛡️ Cloudflare와 함께하는 DNS 방어 전개 중... (2장으로 계속)",
+    choices: [
+      { text: "👉 제2장으로", next: 999 }
+    ],
   },
   {
     text: "🧙‍♂️ Vercel 드래곤이 당신의 프로젝트를 감지합니다... (2장으로 계속)",
+    choices: [
+      { text: "👉 제2장으로", next: 999 }
+    ],
   },
   {
     text: "🚀 런칭을 서두르는 당신. 준비는 되었는가? (2장으로 계속)",
+    choices: [
+      { text: "👉 제2장으로", next: 999 }
+    ],
   },
 ];
 
 export default function DomainChapter1() {
   const [scene, setScene] = useState(0);
+  const router = useRouter();
   const current = scenes[scene];
+
+  const handleChoice = (next: number) => {
+    if (next === 999) {
+      router.push('/games/domain-ch2');
+    } else {
+      setScene(next);
+    }
+  };
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-orange-50 px-6 text-center">
@@ -85,7 +103,7 @@ export default function DomainChapter1() {
         {current.choices?.map((c, i) => (
           <button
             key={i}
-            onClick={() => setScene(c.next)}
+            onClick={() => handleChoice(c.next)}
             className="px-4 py-2 bg-purple-700 text-white rounded-xl hover:bg-purple-800 transition"
           >
             {c.text}
