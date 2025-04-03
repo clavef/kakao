@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 type Scene = {
   text: string;
@@ -40,7 +41,7 @@ UDRP 패널은 곧 결정을 발표할 것이다.`,
 당신은 이겼다.  
 당당하게 kakao.games는 당신의 이름으로 남는다.`,
     choices: [
-      { text: "🎉 GOOD END 보기", next: 3 },
+      { text: "🌱 다음 이야기로", next: 3 },
       { text: "🔁 처음부터 다시 해보기", next: 4 },
     ],
   },
@@ -55,7 +56,7 @@ Vercel 드래곤을 떠올린다.
   
 "이제 진짜 시작이다."`,
     choices: [
-      { text: "🎉 GOOD END 보기", next: 3 },
+      { text: "🌱 다음 이야기로", next: 3 },
       { text: "🔁 처음부터 다시 해보기", next: 4 },
     ],
   },
@@ -63,20 +64,38 @@ Vercel 드래곤을 떠올린다.
     text: `🎮 당신은 마침내  
 도메인 전쟁의 첫 승리를 이뤄냈다.  
   
-kakao.games는 세상에서 가장 엉뚱하고도  
-진심 어린 인디게임 포털로  
-조용히, 그리고 강하게 살아남는다.`,
+그러나 이건 끝이 아니라  
+진짜 이야기가 시작되는 출발점이었다.  
+  
+kakao.games를 이제  
+어떻게 채워나갈 것인가.  
+그게 다음 이야기의 전부가 된다.`,
+    choices: [
+      { text: "👉 이어서 계속한다", next: 999 },
+    ],
   },
   {
     text: `🔁 당신은 다시 처음으로 돌아가  
 다른 선택지를 통해  
 또 다른 엔딩을 찾아 나선다…`,
+    choices: [
+      { text: "🔙 1장부터 다시 해보기", next: 0 },
+    ],
   },
 ];
 
 export default function DomainChapter4() {
   const [scene, setScene] = useState(0);
+  const router = useRouter();
   const current = scenes[scene];
+
+  const handleChoice = (next: number) => {
+    if (next === 999) {
+      router.push('/games/domain-ch5');
+    } else {
+      setScene(next);
+    }
+  };
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-white px-6 text-center">
@@ -86,7 +105,7 @@ export default function DomainChapter4() {
         {current.choices?.map((c, i) => (
           <button
             key={i}
-            onClick={() => setScene(c.next)}
+            onClick={() => handleChoice(c.next)}
             className="px-4 py-2 bg-purple-700 text-white rounded-xl hover:bg-purple-800 transition"
           >
             {c.text}
