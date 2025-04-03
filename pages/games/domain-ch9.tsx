@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import GameFrame from '../../components/GameFrame';
 
 type Scene = {
   text: string;
@@ -64,9 +65,8 @@ export default function DomainChapter9() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-white px-6 text-center">
-      <h1 className="text-2xl font-bold mb-4">🌀 도메인 전쟁 - 마춤법장인의 모험: 제9장</h1>
-      <p className="mb-6 text-lg whitespace-pre-line max-w-xl">{current.text}</p>
+    <GameFrame title="🌀 도메인 전쟁 - 마춤법장인의 모험: 제9장">
+      <p className="mb-6 text-lg whitespace-pre-line leading-relaxed text-left">{current.text}</p>
       <div className="flex flex-col space-y-3">
         {current.choices?.map((c, i) => (
           <button
@@ -78,6 +78,6 @@ export default function DomainChapter9() {
           </button>
         ))}
       </div>
-    </main>
+    </GameFrame>
   );
 }
