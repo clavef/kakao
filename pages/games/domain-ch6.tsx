@@ -1,5 +1,7 @@
+// pages/games/domain-ch6.tsx
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import GameFrame from '../../components/GameFrame';
 
 type Scene = {
   text: string;
@@ -31,9 +33,7 @@ kakao.games는 점점 소문을 타기 시작했다.
   
 조용한 골목 같은 공간이  
 자연스레 인디들의 놀이터로 바뀌기 시작한다.`,
-    choices: [
-      { text: "📮 팬레터와 피드백이 쏟아진다", next: 4 },
-    ],
+    choices: [{ text: "📮 팬레터와 피드백이 쏟아진다", next: 4 }],
   },
   {
     text: `🧵 당신은 이렇게 말한다.  
@@ -44,9 +44,7 @@ kakao.games는 점점 소문을 타기 시작했다.
 드물고, 낯설고, 기묘한 게임들만  
 이상하게 잘 어울린다.  
 그리고 사람들은 그걸 좋아한다.`,
-    choices: [
-      { text: "📮 팬레터와 피드백이 쏟아진다", next: 4 },
-    ],
+    choices: [{ text: "📮 팬레터와 피드백이 쏟아진다", next: 4 }],
   },
   {
     text: `🧙‍♂️ 당신은 단호하게 말한다.  
@@ -58,9 +56,7 @@ kakao.games는 점점 소문을 타기 시작했다.
   
 사람들은 매주 kakao.games를 확인하러 들어온다.  
 그것만으로도 충분하다.`,
-    choices: [
-      { text: "📮 팬레터와 피드백이 쏟아진다", next: 4 },
-    ],
+    choices: [{ text: "📮 팬레터와 피드백이 쏟아진다", next: 4 }],
   },
   {
     text: `📮 어느 날은 이런 메일이 온다.  
@@ -73,9 +69,7 @@ kakao.games는 점점 소문을 타기 시작했다.
   
 당신은 창을 닫고,  
 다시 텍스트 에디터를 연다.`,
-    choices: [
-      { text: "🌱 다음 이야기로", next: 5 },
-    ],
+    choices: [{ text: "🌱 다음 이야기로", next: 5 }],
   },
   {
     text: `🌌 kakao.games는 이제 ‘도메인 전쟁’이 아니라  
@@ -89,9 +83,7 @@ kakao.games는 점점 소문을 타기 시작했다.
   
 그리고, 그 이야기는  
 아직 끝나지 않았다.`,
-    choices: [
-      { text: "👉 이어서 계속한다", next: 999 },
-    ],
+    choices: [{ text: "👉 이어서 계속한다", next: 999 }],
   },
 ];
 
@@ -109,9 +101,10 @@ export default function DomainChapter6() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-sky-50 px-6 text-center">
-      <h1 className="text-2xl font-bold mb-4">🌌 도메인 전쟁 - 마춤법장인의 모험: 제6장</h1>
-      <p className="mb-6 text-lg whitespace-pre-line max-w-xl">{current.text}</p>
+    <GameFrame title="🌌 도메인 전쟁 - 마춤법장인의 모험: 제6장">
+      <p className="mb-6 text-lg whitespace-pre-line leading-relaxed text-left">
+        {current.text}
+      </p>
       <div className="flex flex-col space-y-3">
         {current.choices?.map((c, i) => (
           <button
@@ -123,6 +116,6 @@ export default function DomainChapter6() {
           </button>
         ))}
       </div>
-    </main>
+    </GameFrame>
   );
 }
