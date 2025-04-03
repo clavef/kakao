@@ -1,10 +1,12 @@
-import { useState } from 'react';
-import { useRouter } from 'next/router';
+// pages/games/domain-ch5.tsx
+import { useState } from 'react'
+import { useRouter } from 'next/router'
+import GameFrame from '../../components/GameFrame'
 
 type Scene = {
-  text: string;
-  choices?: { text: string; next: number }[]; 
-};
+  text: string
+  choices?: { text: string; next: number }[]
+}
 
 const scenes: Scene[] = [
   {
@@ -76,7 +78,7 @@ kakao.games는 이제
   
 💡 kakao.games의 진짜 이야기가 시작된다.`,
     choices: [
-      { text: "🌱 다음 이야기로", next: 999 },
+      { text: "🌱 다음 이야기로", next: 5 },
     ],
   },
   {
@@ -89,28 +91,29 @@ kakao.games는 이제
 그리고…  
 또 다른 도전이 당신을 기다리고 있다.`,
     choices: [
-      { text: "👉 이어서 계속한다", next: 999 }, // 6장으로 이동
+      { text: "👉 이어서 계속한다", next: 999 },
     ],
   },
-];
+]
 
 export default function DomainChapter5() {
-  const [scene, setScene] = useState(0);
-  const router = useRouter();
-  const current = scenes[scene];
+  const [scene, setScene] = useState(0)
+  const router = useRouter()
+  const current = scenes[scene]
 
   const handleChoice = (next: number) => {
     if (next === 999) {
-      router.push('/games/domain-ch6');
+      router.push('/games/domain-ch6')
     } else {
-      setScene(next);
+      setScene(next)
     }
-  };
+  }
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-green-50 px-6 text-center">
-      <h1 className="text-2xl font-bold mb-4">🎮 도메인 전쟁 - 마춤법장인의 모험: 제5장</h1>
-      <p className="mb-6 text-lg whitespace-pre-line max-w-xl">{current.text}</p>
+    <GameFrame title="🎮 도메인 전쟁 - 마춤법장인의 모험: 제5장">
+      <p className="mb-6 text-lg whitespace-pre-line leading-relaxed text-left">
+        {current.text}
+      </p>
       <div className="flex flex-col space-y-3">
         {current.choices?.map((c, i) => (
           <button
@@ -122,6 +125,6 @@ export default function DomainChapter5() {
           </button>
         ))}
       </div>
-    </main>
-  );
+    </GameFrame>
+  )
 }
