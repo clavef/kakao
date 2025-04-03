@@ -13,6 +13,7 @@ export default function Home() {
           작고 엉뚱한 웹게임들을 만날 수 있는 공간입니다. 
           <br />by 마춤법장인
         </p>
+        <div className="bg-red-500 text-white p-4">Tailwind 적용 테스트</div>
         <div className="flex flex-col space-y-3">
 <a
   href="/games/domain-ch1"
