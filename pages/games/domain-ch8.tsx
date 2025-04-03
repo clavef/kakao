@@ -1,5 +1,7 @@
+// pages/games/domain-ch8.tsx
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import GameFrame from '../../components/GameFrame';
 
 type Scene = {
   text: string;
@@ -35,9 +37,7 @@ const scenes: Scene[] = [
   
 당신은 마이크를 들고 말한다.  
 “저는 그냥… 12달러 주고 산 도메인 하나 지켰을 뿐입니다.”`,
-    choices: [
-      { text: "🌱 다음 이야기로", next: 4 },
-    ],
+    choices: [{ text: "🌱 다음 이야기로", next: 4 }],
   },
   {
     text: `🖼️ 당신은 한 구석의 갤러리를 빌려  
@@ -49,9 +49,7 @@ const scenes: Scene[] = [
 글자로밖에 표현할 수 없었습니다.”  
   
 라는 문장이 적힌 액자가 걸려 있다.`,
-    choices: [
-      { text: "🌱 다음 이야기로", next: 4 },
-    ],
+    choices: [{ text: "🌱 다음 이야기로", next: 4 }],
   },
   {
     text: `📫 당신은 아무 대답도 하지 않는다.  
@@ -63,9 +61,7 @@ kakao.games에 올린다.
 제목은 ‘소음 속의 정적’.  
   
 그리고 아무 말도 하지 않는다.`,
-    choices: [
-      { text: "🌱 다음 이야기로", next: 4 },
-    ],
+    choices: [{ text: "🌱 다음 이야기로", next: 4 }],
   },
   {
     text: `🌌 kakao.games는 이제 도메인이 아니라  
@@ -76,9 +72,7 @@ kakao.games에 올린다.
   
 그리고 그 다음 페이지가,  
 바로 당신 앞에 놓여 있다.`,
-    choices: [
-      { text: "👉 마지막 장으로", next: 999 },
-    ],
+    choices: [{ text: "👉 마지막 장으로", next: 999 }],
   },
 ];
 
@@ -96,9 +90,8 @@ export default function DomainChapter8() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-yellow-50 px-6 text-center">
-      <h1 className="text-2xl font-bold mb-4">👑 도메인 전쟁 - 마춤법장인의 모험: 제8장</h1>
-      <p className="mb-6 text-lg whitespace-pre-line max-w-xl">{current.text}</p>
+    <GameFrame title="👑 도메인 전쟁 - 마춤법장인의 모험: 제8장">
+      <p className="mb-6 text-lg whitespace-pre-line leading-relaxed text-left">{current.text}</p>
       <div className="flex flex-col space-y-3">
         {current.choices?.map((c, i) => (
           <button
@@ -110,6 +103,6 @@ export default function DomainChapter8() {
           </button>
         ))}
       </div>
-    </main>
+    </GameFrame>
   );
 }
