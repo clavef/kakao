@@ -1,5 +1,7 @@
+// pages/games/domain-ch7.tsx
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import GameFrame from '../../components/GameFrame';
 
 type Scene = {
   text: string;
@@ -37,9 +39,7 @@ const scenes: Scene[] = [
   
 눈을 뜬 당신은 생각한다.  
 ‘내가 뭘 만들어낸 거지…’`,
-    choices: [
-      { text: "🌱 다음 이야기로", next: 4 },
-    ],
+    choices: [{ text: "🌱 다음 이야기로", next: 4 }],
   },
   {
     text: `🕵️ 당신은 도메인 등록 정보를 추적하고,  
@@ -53,9 +53,7 @@ Github 소스를 들여다본다.
 그리고 README에 적힌 한 줄.  
   
 > “이 사이트는 kakao.games에 영감을 받아 제작되었습니다.”`,
-    choices: [
-      { text: "💬 메일을 보낸다", next: 3 },
-    ],
+    choices: [{ text: "💬 메일을 보낸다", next: 3 }],
   },
   {
     text: `💣 당신은 정중하지만 단호한 어조로 메일을 보낸다.  
@@ -69,9 +67,7 @@ Github 소스를 들여다본다.
   
 > “선생님의 세계관이 너무 좋아서 따라해봤어요…  
 죄송해요. 바꿀게요.”`,
-    choices: [
-      { text: "🌱 다음 이야기로", next: 4 },
-    ],
+    choices: [{ text: "🌱 다음 이야기로", next: 4 }],
   },
   {
     text: `🌌 당신은 kakao.games를 열고  
@@ -86,9 +82,7 @@ Github 소스를 들여다본다.
   
 그리고 당신은,  
 그 문화의 시작점이다.`,
-    choices: [
-      { text: "👉 이어서 계속한다", next: 999 },
-    ],
+    choices: [{ text: "👉 이어서 계속한다", next: 999 }],
   },
 ];
 
@@ -106,9 +100,8 @@ export default function DomainChapter7() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-6 text-center">
-      <h1 className="text-2xl font-bold mb-4">🧥 도메인 전쟁 - 마춤법장인의 모험: 제7장</h1>
-      <p className="mb-6 text-lg whitespace-pre-line max-w-xl">{current.text}</p>
+    <GameFrame title="🧥 도메인 전쟁 - 마춤법장인의 모험: 제7장">
+      <p className="mb-6 text-lg whitespace-pre-line leading-relaxed text-left">{current.text}</p>
       <div className="flex flex-col space-y-3">
         {current.choices?.map((c, i) => (
           <button
@@ -120,6 +113,6 @@ export default function DomainChapter7() {
           </button>
         ))}
       </div>
-    </main>
+    </GameFrame>
   );
 }
