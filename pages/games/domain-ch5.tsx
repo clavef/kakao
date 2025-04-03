@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 type Scene = {
   text: string;
-  choices?: { text: string; next: number }[];
+  choices?: { text: string; next: number }[]; 
 };
 
 const scenes: Scene[] = [
@@ -75,7 +76,7 @@ kakao.games는 이제
   
 💡 kakao.games의 진짜 이야기가 시작된다.`,
     choices: [
-      { text: "🚀 다음 챕터로", next: 5 },
+      { text: "🌱 다음 이야기로", next: 999 },
     ],
   },
   {
@@ -85,13 +86,26 @@ kakao.games는 이제
 이건 창작의 근거지다.  
 이건 마춤법장인의 우주다.  
   
-(6장으로 계속)`,
+그리고…  
+또 다른 도전이 당신을 기다리고 있다.`,
+    choices: [
+      { text: "👉 이어서 계속한다", next: 999 }, // 6장으로 이동
+    ],
   },
 ];
 
 export default function DomainChapter5() {
   const [scene, setScene] = useState(0);
+  const router = useRouter();
   const current = scenes[scene];
+
+  const handleChoice = (next: number) => {
+    if (next === 999) {
+      router.push('/games/domain-ch6');
+    } else {
+      setScene(next);
+    }
+  };
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-green-50 px-6 text-center">
@@ -101,7 +115,7 @@ export default function DomainChapter5() {
         {current.choices?.map((c, i) => (
           <button
             key={i}
-            onClick={() => setScene(c.next)}
+            onClick={() => handleChoice(c.next)}
             className="px-4 py-2 bg-purple-700 text-white rounded-xl hover:bg-purple-800 transition"
           >
             {c.text}
