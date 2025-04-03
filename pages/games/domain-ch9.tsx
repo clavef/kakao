@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 type Scene = {
   text: string;
@@ -21,7 +22,7 @@ const scenes: Scene[] = [
 누군가 웃는다.  
 그 미소는 어딘가 익숙하다.`,
     choices: [
-      { text: "🌱 새로운 이야기가 시작된다", next: 1 },
+      { text: "👉 다음 이야기로", next: 1 },
     ],
   },
   {
@@ -35,7 +36,7 @@ const scenes: Scene[] = [
 그리고 누군가는 그걸 보고 웃는다.  
 또 누군가는, 자신의 도메인을 검색해본다.`,
     choices: [
-      { text: "🔁 처음부터 다시 해보기", next: 2 },
+      { text: "🔁 다시 시작하기", next: 2 },
     ],
   },
   {
@@ -51,7 +52,16 @@ const scenes: Scene[] = [
 
 export default function DomainChapter9() {
   const [scene, setScene] = useState(0);
+  const router = useRouter();
   const current = scenes[scene];
+
+  const handleChoice = (next: number) => {
+    if (next === 2) {
+      router.push('/games/domain-ch1');
+    } else {
+      setScene(next);
+    }
+  };
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-white px-6 text-center">
@@ -61,7 +71,7 @@ export default function DomainChapter9() {
         {current.choices?.map((c, i) => (
           <button
             key={i}
-            onClick={() => setScene(c.next)}
+            onClick={() => handleChoice(c.next)}
             className="px-4 py-2 bg-purple-700 text-white rounded-xl hover:bg-purple-800 transition"
           >
             {c.text}
