@@ -12,7 +12,7 @@ const scenes: Scene[] = [
     text: `🌒 어느 날, 한 평범한 개발자가  
 도메인 검색창에 단어 하나를 입력한다.  
   
-“dokkaebi.games”  
+“makao.games”  
   
 🔎 사용 가능  
   
