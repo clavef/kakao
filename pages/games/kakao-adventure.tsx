@@ -47,33 +47,7 @@ const scenes: Scene[] = [
     ],
   },
   {
-    text: "🪙 당신은 도메인을 NFT로 민팅했지만, 그걸로는 소송을 막을 수 없었습니다...\n결국 도메인은 회수당합니다. (BAD END)",
-    choices: [
-      { text: "🔁 처음부터 다시", next: 0 },
-    ],
-  },
-  {
-    text: "💨 당신은 도메인을 팔고 스위스에서 조용히 살기로 했습니다.\n하지만 마음 한구석이 계속 불편합니다. (도피 END)",
-    choices: [
-      { text: "🔁 처음부터 다시", next: 0 },
-    ],
-  },
-  {
-    text: "🏆 당신은 kakao.games를 지켜냈습니다!\nStudio J의 게임은 세상에 알려지고,\n마춤법장인은 전설로 남았습니다. (GOOD END)",
-    choices: [
-      { text: "🔁 다시 해보기", next: 0 },
-    ],
-  },
-];
-
-export default function KakaoAdventure() {
-  const [scene, setScene] = useState(0);
-
-  const current = scenes[scene];
-
-  return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-orange-50 px-6 text-center">
-      <h1 className="text-2xl font-bold mb-4">🧙‍♂️ 도메인 전쟁 - kakao의 모험</h1>
+    text: "🪙 당신은 도메인을 NFT로 민팅했지만, 그걸로는 소송을 막을 수 없었습니다...\n의 모험</h1>
       <p className="mb-6 text-lg whitespace-pre-line max-w-xl">{current.text}</p>
       <div className="flex flex-col space-y-3">
         {current.choices?.map((c, i) => (
