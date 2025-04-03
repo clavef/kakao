@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 type Scene = {
   text: string;
@@ -15,7 +16,7 @@ kakao.games는 점점 소문을 타기 시작했다.
   
 어느 날부터인가,  
 누군가 당신에게 DM을 보내기 시작한다.  
-
+  
 > “저도 여기에 게임을 올릴 수 있을까요?”`,
     choices: [
       { text: "🙌 모두에게 열어준다", next: 1 },
@@ -73,7 +74,7 @@ kakao.games는 점점 소문을 타기 시작했다.
 당신은 창을 닫고,  
 다시 텍스트 에디터를 연다.`,
     choices: [
-      { text: "🌌 계속하기 (7장으로)", next: 5 },
+      { text: "🌱 다음 이야기로", next: 5 },
     ],
   },
   {
@@ -86,13 +87,26 @@ kakao.games는 점점 소문을 타기 시작했다.
   
 자신만의 방식으로 놀고 있다.  
   
-(7장으로 계속)`,
+그리고, 그 이야기는  
+아직 끝나지 않았다.`,
+    choices: [
+      { text: "👉 이어서 계속한다", next: 999 },
+    ],
   },
 ];
 
 export default function DomainChapter6() {
   const [scene, setScene] = useState(0);
+  const router = useRouter();
   const current = scenes[scene];
+
+  const handleChoice = (next: number) => {
+    if (next === 999) {
+      router.push('/games/domain-ch7');
+    } else {
+      setScene(next);
+    }
+  };
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen bg-sky-50 px-6 text-center">
@@ -102,7 +116,7 @@ export default function DomainChapter6() {
         {current.choices?.map((c, i) => (
           <button
             key={i}
-            onClick={() => setScene(c.next)}
+            onClick={() => handleChoice(c.next)}
             className="px-4 py-2 bg-purple-700 text-white rounded-xl hover:bg-purple-800 transition"
           >
             {c.text}
