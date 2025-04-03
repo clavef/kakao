@@ -14,12 +14,12 @@ export default function Home() {
           <br />by 마춤법장인
         </p>
         <div className="flex flex-col space-y-3">
-          <a
-            href="/games/domain-ch1"
-            className="px-6 py-2 bg-black text-white rounded-xl text-center"
-          >
-            게임 플레이하기
-          </a>
+<a
+  href="/games/domain-ch1"
+  className="px-6 py-2 bg-black text-white rounded-xl text-center hover:bg-gray-800 transition"
+>
+  게임 플레이하기
+</a>
         </div>
       </GameFrame>
     </>
