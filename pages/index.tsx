@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import GameFrame from '../components/GameFrame'
+import Image from 'next/image'
 
 export default function Home() {
   return (
@@ -9,7 +10,19 @@ export default function Home() {
         <meta name="description" content="작고 엉뚱한 웹게임 컬렉션" />
       </Head>
       <GameFrame title="🎮 kakao.games">
-        <div className="text-base text-left leading-relaxed whitespace-pre-line mb-6">
+        {/* 로고 애니메이션 */}
+        <div className="flex justify-center mb-6">
+          <Image
+            src="/logo.png"
+            alt="kakao.games 로고"
+            width={128}
+            height={128}
+            className="pop-in"
+          />
+        </div>
+
+        {/* 소개 텍스트 애니메이션 */}
+        <div className="text-base text-left leading-relaxed whitespace-pre-line mb-6 slide-up">
           어서오세요,  
           여기는 바로 kakao.games 입니다.  
           아직 게임은 하나뿐이지만요. 😅
