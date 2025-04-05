@@ -13,7 +13,7 @@ export default function Home() {
         {/* 로고 애니메이션 */}
         <div className="flex justify-center mb-6">
           <Image
-            src="/logo.png"
+            src="/logo.PNG"
             alt="kakao.games 로고"
             width={128}
             height={128}
