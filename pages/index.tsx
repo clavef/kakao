@@ -42,8 +42,8 @@ export default function Home() {
 
           이 모든 걸 만든 사람은  
           바로 저, 마춤법장인입니다.  
-          마춤법은 가끔 틀리지만,  
-          진심은 정확하게 꽂습니다.
+          마춤법은 잘 못마추지만,  
+          진심은 정확히 꽂습니다.
         </div>
 
         <div className="flex flex-col space-y-3">
